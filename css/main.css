@@ -1,0 +1,29 @@
+:root{
+    --primary-color: #005C4D;
+    --secondary-color: #209480;
+    --gray: #CCC9C8;
+}
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+html{
+    font-size: 62.5%;
+}
+header{
+    height: 5vh;
+    width: 100%;
+    background-color: var(--primary-color);
+}
+main{
+    height: 90vh;
+    width: 100%;
+    background-color: var(--gray);
+}
+footer{
+    height: 5vh;
+    width: 100%;
+    background-color: var(--secondary-color);
+
+}
