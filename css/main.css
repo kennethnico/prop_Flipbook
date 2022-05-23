@@ -12,9 +12,22 @@ html{
     font-size: 62.5%;
 }
 header{
-    height: 5vh;
+    height: 8vh;
     width: 100%;
     background-color: var(--primary-color);
+    display: flex;
+    justify-content: center;
+    align-content: center;
+}
+.logo{
+    width: 500px;
+    height: 100%;
+    margin-left: auto;
+}
+.logo img{
+    margin-top: 30px;
+    height: 50px;
+    width: auto;
 }
 main{
     height: 90vh;
