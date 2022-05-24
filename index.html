@@ -13,7 +13,9 @@
 </head>
 <body>
 <header>
-    <div class="logo"><img src="assets/pics/pjcdmx.png" alt=""></div>
+    <picture class="logo">
+        <img src="assets/pics/pjcdmx.png" alt="">
+    </picture>
 </header>
 <main>
 <div id="canvas">
@@ -50,161 +52,49 @@
                 setTimeout(loadApp, 10);
                 return;
             }
-
             // Create the flipbook
 
             flipbook.turn({
-
                 // Magazine width
-
                 width: 922,
-
                 // Magazine height
-
                 height: 600,
-
                 // Duration in millisecond
-
                 duration: 1000,
-
                 // Enables gradients
-
                 gradients: true,
-
                 // Auto center this flipbook
-
                 autoCenter: true,
-
                 // Elevation from the edge of the flipbook when turning a page
-
                 elevation: 50,
-
                 // The number of pages
-
                 pages: 19,
-
                 // Events
-
                 when: {
                     turning: function(event, page, view) {
-
                         var book = $(this),
                             currentPage = book.turn('page'),
                             pages = book.turn('pages');
-
                         // Update the current URI
-
                         Hash.go('page/' + page).update();
-
                         // Show and hide navigation buttons
-
                         disableControls(page);
-
                     },
-
                     turned: function(event, page, view) {
-
                         disableControls(page);
-
                         $(this).turn('center');
-
                         $('#slider').slider('value', getViewNumber($(this), page));
-
                         if (page==1) {
                             $(this).turn('peel', 'br');
                         }
-
                     },
-
                     missing: function (event, pages) {
-
                         // Add pages that aren't in the magazine
-
                         for (var i = 0; i < pages.length; i++)
                             addPage(pages[i], $(this));
-
-                    }
-                }
-
-            });
-
-            // Zoom.js
-/*
-            $('.magazine-viewport').zoom({
-                flipbook: $('.magazine'),
-
-                max: function() {
-
-                    return largeMagazineWidth()/$('.magazine').width();
-
-                },
-
-                when: {
-                    swipeLeft: function() {
-
-                        $(this).zoom('flipbook').turn('next');
-
-                    },
-
-                    swipeRight: function() {
-
-                        $(this).zoom('flipbook').turn('previous');
-
-                    },
-
-                    resize: function(event, scale, page, pageElement) {
-
-                        if (scale==1)
-                            loadSmallPage(page, pageElement);
-                        else
-                            loadLargePage(page, pageElement);
-
-                    },
-
-                    zoomIn: function () {
-
-                        $('#slider-bar').hide();
-                        $('.made').hide();
-                        $('.magazine').removeClass('animated').addClass('zoom-in');
-                        $('.zoom-icon').removeClass('zoom-icon-in').addClass('zoom-icon-out');
-
-                        if (!window.escTip && !$.isTouch) {
-                            escTip = true;
-
-                            $('<div />', {'class': 'exit-message'}).
-                            html('<div>Press ESC to exit</div>').
-                            appendTo($('body')).
-                            delay(2000).
-                            animate({opacity:0}, 500, function() {
-                                $(this).remove();
-                            });
-                        }
-                    },
-
-                    zoomOut: function () {
-
-                        $('#slider-bar').fadeIn();
-                        $('.exit-message').hide();
-                        $('.made').fadeIn();
-                        $('.zoom-icon').removeClass('zoom-icon-out').addClass('zoom-icon-in');
-
-                        setTimeout(function(){
-                            $('.magazine').addClass('animated').removeClass('zoom-in');
-                            resizeViewport();
-                        }, 0);
-
                     }
                 }
             });
-*/
-            // Zoom event
-/*
-            if ($.isTouch)
-                $('.magazine-viewport').bind('zoom.doubleTap', zoomTo);
-            else
-                $('.magazine-viewport').bind('zoom.tap', zoomTo);
-
-*/
             // Using arrow keys to turn the page
 
             $(document).keydown(function(e){
